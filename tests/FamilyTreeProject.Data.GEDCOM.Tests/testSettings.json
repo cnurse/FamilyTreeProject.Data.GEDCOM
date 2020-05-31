@@ -1,0 +1,8 @@
+﻿{
+  "embeddedFilePath": "FamilyTreeProject.Data.GEDCOM.Tests.TestFiles",
+  "filePath": "TestFiles",
+  "treeId": 1,
+  "firstName": "John",
+  "lastName": "Smith",
+  "sex": "Male"
+}

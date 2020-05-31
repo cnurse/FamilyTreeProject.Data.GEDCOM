@@ -1,0 +1,87 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestFiles\FiveIndividuals_OneFamily.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies_DeleteChild.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies_DeleteHusband.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies_DeleteWife.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies_UpdateFather.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies_UpdateMother.ged" />
+    <None Remove="TestFiles\FiveIndividuals_UpdateFather_NewFamily.ged" />
+    <None Remove="TestFiles\FiveIndividuals_UpdateMother_NewFamily.ged" />
+    <None Remove="TestFiles\FourIndividuals_AddIndividualAddFamilyAddHusband.ged" />
+    <None Remove="TestFiles\FourIndividuals_AddIndividualAddFamilyAddWife.ged" />
+    <None Remove="TestFiles\OneFamily_UpdateFamily.ged" />
+    <None Remove="TestFiles\OneIndividual_UpdateIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamily.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyHusband.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyHusband_AddIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyHusband_UpdateIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyWife.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyWife_AddIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamilyWife_UpdateIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamily_AddIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_OneFamily_UpdateIndividual.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_UpdateIndividualAddFamilyAddHusband.ged" />
+    <None Remove="TestFiles\ThreeIndividuals_UpdateIndividualAddFamilyAddWife.ged" />
+    <None Remove="TestFiles\TwoFamilies_UpdateFamily.ged" />
+    <None Remove="TestFiles\TwoIndividuals_AddFamilyAddChild1.ged" />
+    <None Remove="TestFiles\TwoIndividuals_AddFamilyAddChild2.ged" />
+    <None Remove="TestFiles\TwoIndividuals_AddFamilyAddHusband.ged" />
+    <None Remove="TestFiles\TwoIndividuals_AddFamilyAddHusbandAndWife.ged" />
+    <None Remove="TestFiles\TwoIndividuals_AddFamilyAddWife.ged" />
+    <None Remove="TestFiles\TwoIndividuals_UpdateIndividual.ged" />
+    <None Remove="TestFiles\FiveIndividuals_OneFamily.ged" />
+    <None Remove="TestFiles\FiveIndividuals_ThreeFamilies.ged" />
+    <None Update="testSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_ThreeFamilies_DeleteChild.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_ThreeFamilies_DeleteHusband.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_ThreeFamilies_DeleteWife.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_ThreeFamilies_UpdateFather.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_ThreeFamilies_UpdateMother.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_UpdateFather_NewFamily.ged" />
+    <EmbeddedResource Include="TestFiles\FiveIndividuals_UpdateMother_NewFamily.ged" />
+    <EmbeddedResource Include="TestFiles\FourIndividuals_AddIndividualAddFamilyAddHusband.ged" />
+    <EmbeddedResource Include="TestFiles\FourIndividuals_AddIndividualAddFamilyAddWife.ged" />
+    <EmbeddedResource Include="TestFiles\OneFamily_UpdateFamily.ged" />
+    <EmbeddedResource Include="TestFiles\OneIndividual_UpdateIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamily.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyHusband.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyHusband_AddIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyHusband_UpdateIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyWife.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyWife_AddIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamilyWife_UpdateIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamily_AddIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_OneFamily_UpdateIndividual.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_UpdateIndividualAddFamilyAddHusband.ged" />
+    <EmbeddedResource Include="TestFiles\ThreeIndividuals_UpdateIndividualAddFamilyAddWife.ged" />
+    <EmbeddedResource Include="TestFiles\TwoFamilies_UpdateFamily.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_AddFamilyAddChild1.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_AddFamilyAddChild2.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_AddFamilyAddHusband.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_AddFamilyAddHusbandAndWife.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_AddFamilyAddWife.ged" />
+    <EmbeddedResource Include="TestFiles\TwoIndividuals_UpdateIndividual.ged" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FamilyTreeProject.Data.Common" Version="1.0.0" />
+    <PackageReference Include="FamilyTreeProject.GEDCOM" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="Moq" Version="4.14.1" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FamilyTreeProject.Data.GEDCOM\FamilyTreeProject.Data.GEDCOM.csproj" />
+  </ItemGroup>
+</Project>
