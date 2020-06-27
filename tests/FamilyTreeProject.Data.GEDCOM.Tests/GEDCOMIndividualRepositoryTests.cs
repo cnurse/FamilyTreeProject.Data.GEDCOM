@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
 using Moq;
 using NUnit.Framework;
 
@@ -14,7 +13,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Constructor_Throws_On_Null_Database()
         {
             //Arrange
-            IFileStore store = null;
+            IGEDCOMFileStore store = null;
 
             //Act
 
@@ -28,7 +27,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Add_Throws_On_Null_Individual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
 
             //Act, Assert
@@ -39,7 +38,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Add_Calls_Store_AddIndividual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
             var individual = new Individual();
 
@@ -54,7 +53,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Delete_Throws_On_Null_Individual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
 
             //Act, Assert
@@ -65,7 +64,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Delete_Calls_Store_DeleteIndividual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
             var individual = new Individual();
 
@@ -80,7 +79,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetAll_Calls_Store_Individuals()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             mockStore.Setup(s => s.Individuals).Returns(() => new List<Individual>());
             var rep = new IndividualRepository(mockStore.Object);
 
@@ -95,7 +94,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Update_Throws_On_Null_Individual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
 
             //Act, Assert
@@ -106,7 +105,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Update_Calls_Store_UpdateIndividual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new IndividualRepository(mockStore.Object);
             var individual = new Individual();
 

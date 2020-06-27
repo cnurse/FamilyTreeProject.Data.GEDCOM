@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FamilyTreeProject.Core;
 using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.Core.Contracts;
-using FamilyTreeProject.Data.Common;
 using FamilyTreeProject.GEDCOM;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
+using FactType = FamilyTreeProject.Core.Common.FactType;
+using Sex = FamilyTreeProject.Core.Common.Sex;
 
 // ReSharper disable UseNullPropagation
 
@@ -17,13 +19,61 @@ using FamilyTreeProject.GEDCOM.Structures;
 
 namespace FamilyTreeProject.Data.GEDCOM
 {
-    public class GEDCOMFileStore : FileStore
+    public class GEDCOMFileStore : IGEDCOMFileStore
     {
         private readonly string DEFAULT_TREE_ID = Guid.Empty.ToString();
+        private readonly string _path;
+        private readonly GEDCOMDocument _gedComDocument;
 
-        public GEDCOMFileStore(string path) : base(path, new GEDCOMDocument()) {}
+        public GEDCOMFileStore(string path)
+        {
+            Requires.NotNullOrEmpty("path", path);
 
-        private GEDCOMDocument _gedComDocument => Document as GEDCOMDocument;
+            _path = path;
+            _gedComDocument = new GEDCOMDocument();
+            
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            LoadDocument();
+
+            Tree = new Tree();
+            
+            Families = new List<Family>();
+            Individuals = new List<Individual>();
+            Repositories = new List<Repository>();
+            Sources = new List<Source>();
+
+            LoadTree();
+            LoadIndividuals();
+            LoadFamilies();
+            LoadRepositories();
+            LoadSources();
+        }
+
+        private void LoadDocument()
+        {
+            using (var stream = new FileStream(_path, FileMode.OpenOrCreate, FileAccess.Read))
+            {
+                _gedComDocument.Load(stream);
+            }
+        }        
+
+        public Tree Tree { get; private set; }
+        public IList<Family> Families { get; private set; }
+        public IList<Individual> Individuals { get; private set; }
+        public IList<Repository> Repositories { get; private set; }
+        public IList<Source> Sources { get; private set; }
+        
+        public void SaveChanges()
+        {
+            using (var stream = new FileStream(_path, FileMode.Create, FileAccess.Write))
+            {
+                _gedComDocument.Save(stream);
+            }
+        }
 
         private void CreateNewFamily(Individual individual)
         {
@@ -105,13 +155,13 @@ namespace FamilyTreeProject.Data.GEDCOM
                 switch (eventStructure.EventClass)
                 {
                     case EventClass.Individual:
-                        newFact.FactType = eventStructure.IndividualEventType;
+                        newFact.FactType = (FactType) Enum.Parse(typeof(FactType), eventStructure.IndividualEventType.ToString());
                         break;
                     case EventClass.Family:
-                        newFact.FactType = eventStructure.FamilyEventType;
+                        newFact.FactType = (FactType) Enum.Parse(typeof(FactType), eventStructure.FamilyEventType.ToString());
                         break;
                     case EventClass.Attribute:
-                        newFact.FactType = eventStructure.IndividualAttributeType;
+                        newFact.FactType = (FactType) Enum.Parse(typeof(FactType), eventStructure.IndividualAttributeType.ToString());
                         break;
                     default:
                         newFact.FactType = FactType.Unknown;
@@ -127,7 +177,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected override void LoadFamilies()
+        protected  void LoadFamilies()
         {
             foreach (var gedcomRecord in _gedComDocument.FamilyRecords)
             {
@@ -166,7 +216,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected override void LoadIndividuals()
+        protected  void LoadIndividuals()
         {
             foreach (var gedcomRecord in _gedComDocument.IndividualRecords)
             {
@@ -177,7 +227,7 @@ namespace FamilyTreeProject.Data.GEDCOM
                                             Id = individualRecord.GetId().Value,
                                             FirstName = (individualRecord.Name != null) ? individualRecord.Name.GivenName : String.Empty,
                                             LastName = (individualRecord.Name != null) ? individualRecord.Name.LastName : String.Empty,
-                                            Sex = individualRecord.Sex,
+                                            Sex = (Sex) Enum.Parse(typeof(Sex), individualRecord.Sex.ToString()),
                                             TreeId = DEFAULT_TREE_ID
                                         };
 
@@ -268,7 +318,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected override void LoadRepositories()
+        protected  void LoadRepositories()
         {
             foreach (var gedcomRecord in _gedComDocument.RepositoryRecords)
             {
@@ -288,7 +338,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected override void LoadSources()
+        protected  void LoadSources()
         {
             foreach (var gedcomRecord in _gedComDocument.SourceRecords)
             {
@@ -313,7 +363,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected override void LoadTree()
+        protected  void LoadTree()
         {
             //Load tree meta data from Header Record
             
@@ -376,7 +426,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        public override void AddFamily(Family family)
+        public void AddFamily(Family family)
         {
             Requires.NotNull("family", family);
 
@@ -405,7 +455,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             _gedComDocument.AddRecord(record);
         }
 
-        public override void AddIndividual(Individual individual)
+        public void AddIndividual(Individual individual)
         {
             Requires.NotNull("individual", individual);
 
@@ -419,29 +469,29 @@ namespace FamilyTreeProject.Data.GEDCOM
             var name = new GEDCOMNameStructure(String.Format("{0} /{1}/", individual.FirstName, individual.LastName), record.Level + 1);
 
             record.Name = name;
-            record.Sex = individual.Sex;
+            record.Sex = (FamilyTreeProject.GEDCOM.Common.Sex) Enum.Parse(typeof(FamilyTreeProject.GEDCOM.Common.Sex), individual.Sex.ToString());
             _gedComDocument.AddRecord(record);
 
             //Update Family Info
             UpdateFamilyDetails(individual);
         }
 
-        public override void AddRepository(Repository repository)
+        public void AddRepository(Repository repository)
         {
             throw new NotImplementedException();
         }
 
-        public override void AddSource(Source source)
+        public void AddSource(Source source)
         {
             throw new NotImplementedException();
         }
 
-        public override void AddTree(Tree tree)
+        public void AddTree(Tree tree)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeleteFamily(Family family)
+        public void DeleteFamily(Family family)
         {
             Requires.NotNull("family", family);
 
@@ -456,7 +506,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             _gedComDocument.RemoveRecord(record);
         }
 
-        public override void DeleteIndividual(Individual individual)
+        public void DeleteIndividual(Individual individual)
         {
             Requires.NotNull("individual", individual);
 
@@ -503,22 +553,22 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        public override void DeleteRepository(Repository repository)
+        public void DeleteRepository(Repository repository)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeleteSource(Source source)
+        public void DeleteSource(Source source)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeleteTree(Tree tree)
+        public void DeleteTree(Tree tree)
         {
             throw new NotImplementedException();
         }
 
-        public override void UpdateFamily(Family family)
+        public void UpdateFamily(Family family)
         {
             Requires.NotNull("family", family);
 
@@ -530,7 +580,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        public override void UpdateIndividual(Individual individual)
+        public void UpdateIndividual(Individual individual)
         {
             Requires.NotNull("individual", individual);
 
@@ -542,23 +592,23 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
 
             record.Name = new GEDCOMNameStructure(String.Format("{0} /{1}/", individual.FirstName, individual.LastName), record.Level + 1);
-            record.Sex = individual.Sex;
+            record.Sex = (FamilyTreeProject.GEDCOM.Common.Sex) Enum.Parse(typeof(FamilyTreeProject.GEDCOM.Common.Sex), individual.Sex.ToString());
 
             //Update Family Info
             UpdateFamilyDetails(individual);
         }
 
-        public override void UpdateRepository(Repository repository)
+        public void UpdateRepository(Repository repository)
         {
             throw new NotImplementedException();
         }
 
-        public override void UpdateSource(Source source)
+        public void UpdateSource(Source source)
         {
             throw new NotImplementedException();
         }
 
-        public override void UpdateTree(Tree tree)
+        public void UpdateTree(Tree tree)
         {
             throw new NotImplementedException();
         }

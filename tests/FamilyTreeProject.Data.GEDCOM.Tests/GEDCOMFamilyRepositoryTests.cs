@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
 using Moq;
 using NUnit.Framework;
 
@@ -16,7 +15,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Constructor_Throws_On_Null_Database()
         {
             //Arrange
-            IFileStore store = null;
+            IGEDCOMFileStore store = null;
 
             //Act
 
@@ -29,7 +28,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Add_Throws_On_Null_Family()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
 
             //Act, Assert
@@ -40,7 +39,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Add_Calls_Store_AddFamily()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
             var family = new Family();
 
@@ -55,7 +54,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Delete_Throws_On_Null_Family()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
 
             //Act, Assert
@@ -66,7 +65,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Delete_Calls_Store_DeleteFamily()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
             var family = new Family();
 
@@ -81,7 +80,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetAll_Calls_Store_Families()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             mockStore.Setup(s => s.Families).Returns(() => new List<Family>());
             var rep = new FamilyRepository(mockStore.Object);
 
@@ -96,7 +95,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Update_Throws_On_Null_Family()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
 
             //Act, Assert
@@ -107,7 +106,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Update_Calls_Store_UpdateFamily()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var rep = new FamilyRepository(mockStore.Object);
             var family = new Family();
 

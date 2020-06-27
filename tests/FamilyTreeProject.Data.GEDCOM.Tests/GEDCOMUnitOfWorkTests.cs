@@ -1,7 +1,5 @@
 ﻿using System;
 using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
-using FamilyTreeProject.Data.GEDCOM.Tests.Models;
 using Moq;
 using NUnit.Framework;
 
@@ -27,7 +25,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Constructor_Overload_Throws_On_Null_Database()
         {
             //Arrange
-            IFileStore database = null;
+            IGEDCOMFileStore database = null;
 
             //Act
 
@@ -40,7 +38,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void Commit_Calls_Store_SaveChanges()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var unitOfWork = new GEDCOMUnitOfWork(mockStore.Object);
 
             //Act
@@ -54,7 +52,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetRepository_Throws_If_T_Not_Recognised()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var unitOfWork = new GEDCOMUnitOfWork(mockStore.Object);
 
             //Act, Assert
@@ -65,7 +63,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetLinqRepository_Returns_IndividualRepository_If_T_Is_Individual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var unitOfWork = new GEDCOMUnitOfWork(mockStore.Object);
 
             //Act
@@ -79,7 +77,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetLinqRepository_Returns_FamilyRepository_If_T_Is_Family()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var unitOfWork = new GEDCOMUnitOfWork(mockStore.Object);
 
             //Act
@@ -93,7 +91,7 @@ namespace FamilyTreeProject.Data.GEDCOM.Tests
         public void GetRepository_Throws_If_T_Is_Neither_Family_Individual()
         {
             //Arrange
-            var mockStore = new Mock<IFileStore>();
+            var mockStore = new Mock<IGEDCOMFileStore>();
             var unitOfWork = new GEDCOMUnitOfWork(mockStore.Object);
 
             //Act, Assert
