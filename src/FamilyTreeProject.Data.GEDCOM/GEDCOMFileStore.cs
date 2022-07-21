@@ -4,13 +4,12 @@ using System.IO;
 using System.Linq;
 using FamilyTreeProject.Core;
 using FamilyTreeProject.Core.Common;
-using FamilyTreeProject.Core.Contracts;
 using FamilyTreeProject.GEDCOM;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
-using FactType = FamilyTreeProject.Core.Common.FactType;
-using Sex = FamilyTreeProject.Core.Common.Sex;
+using Naif.Core.Contracts;
+using FamilyTreeProject.Common;
 
 // ReSharper disable UseNullPropagation
 
@@ -469,7 +468,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             var name = new GEDCOMNameStructure(String.Format("{0} /{1}/", individual.FirstName, individual.LastName), record.Level + 1);
 
             record.Name = name;
-            record.Sex = (FamilyTreeProject.GEDCOM.Common.Sex) Enum.Parse(typeof(FamilyTreeProject.GEDCOM.Common.Sex), individual.Sex.ToString());
+            record.Sex = (Sex) Enum.Parse(typeof(Sex), individual.Sex.ToString());
             _gedComDocument.AddRecord(record);
 
             //Update Family Info
@@ -592,7 +591,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
 
             record.Name = new GEDCOMNameStructure(String.Format("{0} /{1}/", individual.FirstName, individual.LastName), record.Level + 1);
-            record.Sex = (FamilyTreeProject.GEDCOM.Common.Sex) Enum.Parse(typeof(FamilyTreeProject.GEDCOM.Common.Sex), individual.Sex.ToString());
+            record.Sex = (Sex) Enum.Parse(typeof(Sex), individual.Sex.ToString());
 
             //Update Family Info
             UpdateFamilyDetails(individual);

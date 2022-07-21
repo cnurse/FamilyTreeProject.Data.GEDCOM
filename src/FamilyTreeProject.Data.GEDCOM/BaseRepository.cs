@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using FamilyTreeProject.Core.Collections;
-using FamilyTreeProject.Core.Data;
+using FamilyTreeProject.Common.Data;
+using Naif.Core.Collections;
 
 namespace FamilyTreeProject.Data.GEDCOM
 {

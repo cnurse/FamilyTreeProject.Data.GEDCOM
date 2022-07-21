@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using FamilyTreeProject.Common;
 using FamilyTreeProject.Core;
 using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.Data.GEDCOM.Tests.Common;
