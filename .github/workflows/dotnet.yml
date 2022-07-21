@@ -26,6 +26,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
-      run: dotnet pack src/FamilyTreeProject.GEDCOM/FamilyTreeProject.GEDCOM.csproj -c Release
+      run: dotnet pack src/FamilyTreeProject.Data.GEDCOM/FamilyTreeProject.Data.GEDCOM.csproj -c Release
     - name: Publish to GitHub packages 
-      run: dotnet nuget push src/FamilyTreeProject.GEDCOM/bin/Release/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
+      run: dotnet nuget push src/FamilyTreeProject.Data.GEDCOM/bin/Release/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
