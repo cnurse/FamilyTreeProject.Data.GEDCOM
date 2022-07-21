@@ -177,7 +177,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected  void LoadFamilies()
+        private  void LoadFamilies()
         {
             foreach (var gedcomRecord in _gedComDocument.FamilyRecords)
             {
@@ -216,7 +216,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected  void LoadIndividuals()
+        private  void LoadIndividuals()
         {
             foreach (var gedcomRecord in _gedComDocument.IndividualRecords)
             {
@@ -318,7 +318,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected  void LoadRepositories()
+        private  void LoadRepositories()
         {
             foreach (var gedcomRecord in _gedComDocument.RepositoryRecords)
             {
@@ -338,7 +338,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected  void LoadSources()
+        private  void LoadSources()
         {
             foreach (var gedcomRecord in _gedComDocument.SourceRecords)
             {
@@ -363,7 +363,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }
 
-        protected  void LoadTree()
+        private  void LoadTree()
         {
             //Load tree meta data from Header Record
             
