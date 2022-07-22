@@ -73,8 +73,8 @@
     <EmbeddedResource Include="TestFiles\TwoIndividuals_UpdateIndividual.ged" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FamilyTreeProject.Data.Common" Version="1.1.0-alpha-01" />
-    <PackageReference Include="FamilyTreeProject.GEDCOM" Version="2.0.0-alpha-1" />
+    <PackageReference Include="FamilyTreeProject.Common" Version="1.1.0-alpha-02" />
+    <PackageReference Include="FamilyTreeProject.GEDCOM" Version="2.0.0-alpha-01" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />

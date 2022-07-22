@@ -1,7 +1,6 @@
 ﻿using System;
 using FamilyTreeProject.Common.Data;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
+using FamilyTreeProject.Common.Models;
 using Naif.Core.Contracts;
 
 namespace FamilyTreeProject.Data.GEDCOM
@@ -34,7 +33,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             _store.SaveChanges();
         }
 
-        public IRepository<T> GetRepository<T>() where T : class
+        public IRepository<T> GetRepository<T>() where T : Entity
         {
             if (typeof(T) == typeof(Tree))
             {

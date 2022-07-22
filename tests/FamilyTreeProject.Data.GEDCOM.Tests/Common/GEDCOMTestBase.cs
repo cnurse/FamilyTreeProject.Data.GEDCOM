@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using FamilyTreeProject.Common;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Core.Common;
+using FamilyTreeProject.Common.Models;
 using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 

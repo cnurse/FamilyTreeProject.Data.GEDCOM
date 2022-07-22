@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
+using FamilyTreeProject.Common.Data;
+using FamilyTreeProject.Common.Models;
 using Naif.Core.Contracts;
 
 namespace FamilyTreeProject.Data.GEDCOM

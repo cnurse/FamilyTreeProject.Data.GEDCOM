@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Core.Common;
 using FamilyTreeProject.GEDCOM;
 using FamilyTreeProject.GEDCOM.Common;
 using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
 using Naif.Core.Contracts;
 using FamilyTreeProject.Common;
-using FamilyTreeProject.Data.Common;
+using FamilyTreeProject.Common.Data;
+using FamilyTreeProject.Common.Models;
 
 // ReSharper disable UseNullPropagation
 

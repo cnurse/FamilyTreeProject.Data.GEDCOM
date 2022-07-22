@@ -2,8 +2,7 @@
 using System.IO;
 using System.Linq;
 using FamilyTreeProject.Common;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Core.Common;
+using FamilyTreeProject.Common.Models;
 using FamilyTreeProject.Data.GEDCOM.Tests.Common;
 using FamilyTreeProject.GEDCOM;
 using NUnit.Framework;

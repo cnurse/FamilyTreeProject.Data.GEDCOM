@@ -1,6 +1,6 @@
 ﻿using System;
-using FamilyTreeProject.Core;
-using FamilyTreeProject.Data.Common;
+using FamilyTreeProject.Common.Data;
+using FamilyTreeProject.Common.Models;
 using Moq;
 using NUnit.Framework;
 
