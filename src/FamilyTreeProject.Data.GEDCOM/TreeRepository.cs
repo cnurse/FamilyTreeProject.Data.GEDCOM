@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using FamilyTreeProject.Core;
+using FamilyTreeProject.Data.Common;
 using Naif.Core.Contracts;
 
 namespace FamilyTreeProject.Data.GEDCOM
 {
     public class TreeRepository : BaseRepository<Tree>
     {
-        private readonly IGEDCOMFileStore _store;
+        private readonly IFileStore _store;
 
-        public TreeRepository(IGEDCOMFileStore store)
+        public TreeRepository(IFileStore store)
         {
             Requires.NotNull(store);
 

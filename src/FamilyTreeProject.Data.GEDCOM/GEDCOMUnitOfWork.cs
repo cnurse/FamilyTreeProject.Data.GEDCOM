@@ -1,13 +1,14 @@
 ﻿using System;
 using FamilyTreeProject.Common.Data;
 using FamilyTreeProject.Core;
+using FamilyTreeProject.Data.Common;
 using Naif.Core.Contracts;
 
 namespace FamilyTreeProject.Data.GEDCOM
 {
     public class GEDCOMUnitOfWork : IUnitOfWork
     {
-        private IGEDCOMFileStore _store;
+        private IFileStore _store;
         
         public GEDCOMUnitOfWork(string path)
         {
@@ -16,7 +17,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             _store = new GEDCOMFileStore(path);
         }
 
-        public GEDCOMUnitOfWork(IGEDCOMFileStore store)
+        public GEDCOMUnitOfWork(IFileStore store)
         {
             Requires.NotNull(store);
 

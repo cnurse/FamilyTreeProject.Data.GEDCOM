@@ -10,6 +10,7 @@ using FamilyTreeProject.GEDCOM.Records;
 using FamilyTreeProject.GEDCOM.Structures;
 using Naif.Core.Contracts;
 using FamilyTreeProject.Common;
+using FamilyTreeProject.Data.Common;
 
 // ReSharper disable UseNullPropagation
 
@@ -18,7 +19,7 @@ using FamilyTreeProject.Common;
 
 namespace FamilyTreeProject.Data.GEDCOM
 {
-    public class GEDCOMFileStore : IGEDCOMFileStore
+    public class GEDCOMFileStore : IFileStore
     {
         private readonly string DEFAULT_TREE_ID = Guid.Empty.ToString();
         private readonly string _path;
@@ -60,7 +61,7 @@ namespace FamilyTreeProject.Data.GEDCOM
             }
         }        
 
-        public Tree Tree { get; private set; }
+        public Tree Tree { get; set; }
         public IList<Family> Families { get; private set; }
         public IList<Individual> Individuals { get; private set; }
         public IList<Repository> Repositories { get; private set; }
